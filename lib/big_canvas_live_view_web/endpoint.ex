@@ -1,9 +1,18 @@
 defmodule BigCanvasLiveViewWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :big_canvas_live_view
 
+  @session_options [
+    store: :cookie,
+    key: "big_canvas_live_view_key",
+    signing_salt: "HXcWtqCV"
+  ]
+
   socket "/socket", BigCanvasLiveViewWeb.UserSocket,
     websocket: true,
     longpoll: false
+
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -37,10 +46,7 @@ defmodule BigCanvasLiveViewWeb.Endpoint do
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
-  plug Plug.Session,
-    store: :cookie,
-    key: "_big_canvas_live_view_key",
-    signing_salt: "HXcWtqCV"
+  plug Plug.Session, @session_options
 
   plug BigCanvasLiveViewWeb.Router
 end

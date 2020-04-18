@@ -13,6 +13,7 @@ config :big_canvas_live_view,
 # Configures the endpoint
 config :big_canvas_live_view, BigCanvasLiveViewWeb.Endpoint,
   url: [host: "localhost"],
+  live_view: [signing_salt: "kY54l7eXoaN9MwbuaXz6dyHxssPFvDDR"],
   secret_key_base: "B9PQGOglByguGeY35w00DpHAYx7io2l6SZg8VKmipSC1Ai6CTt4x5eX4BNuu4SYV",
   render_errors: [view: BigCanvasLiveViewWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: BigCanvasLiveView.PubSub, adapter: Phoenix.PubSub.PG2]
