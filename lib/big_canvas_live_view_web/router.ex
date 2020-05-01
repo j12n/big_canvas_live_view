@@ -19,7 +19,10 @@ defmodule BigCanvasLiveViewWeb.Router do
 
     get "/", PageController, :index
 
-    live "/test", TestLive
+    live "/grid", GridLive
+
+    get "/draw", DrawController, :index
+    post "/draw", DrawController, :create
   end
 
   # Other scopes may use custom stacks.
